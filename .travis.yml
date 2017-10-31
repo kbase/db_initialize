@@ -1,0 +1,17 @@
+language: bash
+sudo: required
+services:
+  - docker
+before_install:
+  - docker pull bitnami/minideb:stretch
+before_script:
+  - sudo apt-get update && sudo apt-get install git
+script:
+  - make
+env:
+  secure: "zLpTvqckrVV9YEo5u50AxFNbqWpyPjk5vzILWD3/SV4CyO0/zSQppUlbUCeJwb1eJwhZpPwGv7RMpULON+arfS+LexaVrTmhfO+KLSzBBqLJXRuu0+uFH4Knb2DZSYrP0K353Fe6HjHuPX9tSfpG2gDOlV+7MSjKOm8w7k6kCvpFgbvHXJ96unvuvIQMCC1Z7ze67Hs4f3N2tiuykNry0bTwJjRn6KRh5YIqvv4S3bcFNDpiZiXAab5TbXhlm552dy/GceCVWOiieMNJuQLAhaf4EaOFjjZ6G/sPeDNXN3cXduQaBusOQ5TaBkedmPInTEOVB0NNKlf8w1B9OeBKOSkQV9XNfa78BqUPpVTr4wZeuEgNdnXY3vcUBkfwZjDp5QO/Pu6UHcMiH0pfs2BOQ7GR/A7GYOGBzfQobp2T7W0kTZBJOPdhoYx9CGM1OpPbEX2gAhfCeR4fBzF5LlEVxnGrrNywfC3ROHosZ8q10/aCrvkh5EgJsMeE8hncPscG8TUnczbuoU/5VHhdo9cuZGBMJF0T/kd5+G5ElejaGeXots9iPATg6zzT6tg2UDXfTQsbVNrnvDjlbYG1uIFTTBZg8b3Tockwv+CotYOpX2xjqJxO3RYiwBUhz31GDWHvkZSXppVkmbUrEGAAXFt/twv2e75fRhPDoMnNuulVOig="
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=kbase/db_initialize
+  - docker push $REPO
