@@ -9,6 +9,8 @@ ARG BRANCH=develop
 RUN apt-get update && \
     apt-get -y install mongodb-clients mysql-client netcat-openbsd
 
+COPY dockerize.sh /kb/deployment/bin
+
 # This build of shock seems to malfunction if we go above Go 1.5
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
