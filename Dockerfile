@@ -7,7 +7,7 @@ ARG GO_VER=1.5.4
 ARG BRANCH=develop
 
 RUN apt-get update && \
-    apt-get -y install mongodb-clients mysql-client netcat-openbsd
+    apt-get -y install mongodb-clients mysql-client netcat-openbsd curl iputils-ping
 
 COPY dockerize.sh /kb/deployment/bin
 
